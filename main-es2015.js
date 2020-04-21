@@ -32,7 +32,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<header>\n    <div class=\"container\">\n        <h1>POC Mask Designer</h1>\n    </div>\n</header>\n<div class=\"container\">\n    <router-outlet></router-outlet>\n</div>\n<footer>\n\n</footer>");
+/* harmony default export */ __webpack_exports__["default"] = ("<header>\n    <div class=\"container\">\n        <h1>POC Mask Designer</h1>\n    </div>\n</header>\n<div class=\"container\">\n    <router-outlet></router-outlet>\n");
 
 /***/ }),
 
@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"model && !report\" class=\"padding20 white-bg\">\n  <div class=\"row\">\n    <div class=\"col-12\">\n        <div class=\"btn-cont\">\n            <button style='display: none;' (click)=\"initReport()\" class=\"btn btn-primary pull-left\">Response</button>\n            <button style='display: none;' (click)=\"updateForm()\" class=\"btn btn-primary pull-right\">Update</button>\n            <button style='display: none;' routerLink=\"/application/{{model._id}}\" class=\"btn btn-primary pull-right\" >View <i class=\"fa fa-external-link\"></i></button>\n        </div>\n    </div>\n  </div>\n  <div class=\"spacer30\"></div>\n  <div class=\"row\">\n    <div class=\"col-4\">\n\n        <div style='display: none;' class=\"row\">\n        <label class=\"col-8\">Background Color</label>\n        <input class=\"colorpick col-4\" type=\"color\" name=\"bgColor\" [(ngModel)]=\"model.theme.bgColor\" >    \n        </div>\n        <div style='display: none;' class=\"row\">\n        <label class=\"col-8\">Text Color</label>\n        <input class=\"colorpick col-4\" type=\"color\" name=\"textColor\" [(ngModel)]=\"model.theme.textColor\">    \n        </div>\n\n      <h4 style='display: none;' (click)=\"test()\">Select Fields</h4>\n      <p style='display: none;'>Customize your form by drag and drop below fields to the form area.</p>\n      <!--a draggable element-->\n      <div class=\"fields\" *ngFor=\"let item of fieldModels\">\n        <div class=\"field pointer shadow-bg\" [dndDraggable]=\"item\"\n        [dndEffectAllowed]=\"'copy'\" \n        (dndEnd)=\"onDragEnd($event)\">\n          <i [ngClass]=\"item.icon\" class=\"fa pull-left\"></i>\n          <h5>{{item.indexFieldName}}</h5>\n        </div>\n      </div>\n\n    </div>\n    <div class=\"col-8\">\n\n      <div  class=\"form-group\"\n      style=\"display:none;margin-bottom: 0px !important; padding: 30px 60px 5px 60px;\"\n      [style.backgroundColor]=\"model.theme.bgColor\"\n      [style.color]=\"model.theme.textColor\">\n      <h2><input class=\"form-control\" type=\"text\" [(ngModel)]=\"model.name\" /></h2>\n      <input class=\"form-control\" type=\"text\" [(ngModel)]=\"model.description\" />\n      </div>\n\n      <!--a dropzone-->\n      <!--to allow dropping content that is not [dndDraggable] set dndAllowExternal to true-->\n      <section dndDropzone\n      (dndDragover)=\"onDragover($event)\"\n      (dndDrop)=\"onDrop($event,model.attributes)\" class=\"dndDropArea\"\n      [ngClass]=\"{'empty':model.attributes.length == 0}\"\n      [style.backgroundColor]=\"model.theme.bgColor\"\n      [style.color]=\"model.theme.textColor\"> \n\n      <div class=\"field\" *ngFor=\"let item of model.attributes;let i= index;\" \n        (dndStart)=\"onDragStart($event)\"\n        (dndCanceled)=\"onDragCanceled($event)\"\n        (dndMoved)=\"onDragged(item, model.attributes, 'move')\"\n        [dndEffectAllowed]=\"'all'\" \n        [dndDraggable]=\"item\">\n        <div class=\"row form-group\">\n          <div class=\"col-1\"><i class=\"fa fa-ellipsis-v dndHandle\" dndHandle></i></div>\n          <div class=\"col-7\">\n            <!-- <i [ngClass]=\"item.icon\" class=\"fa pull-left\"></i>\n            <h5>{{item.label}}\n            <span *ngIf=\"item.required\" class=\"red\">*</span></h5> -->\n                  <div *ngIf=\"item.type=='text'\">\n                    <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                    <input type=\"text\" [style.width]= \"item.width\" class=\"form-control\" id=\"{{item.name}}\" placeholder=\"{{item.placeholder}}\" >\n                  </div>\n                  <div *ngIf=\"item.type=='email'\">\n                    <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                    <input type=\"email\" class=\"form-control\" id=\"{{item.name}}\" placeholder=\"{{item.placeholder}}\" >\n                  </div>\n                  <div *ngIf=\"item.type=='phone'\">\n                    <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                    <input type=\"text\" class=\"form-control\" id=\"{{item.name}}\" placeholder=\"{{item.placeholder}}\" >\n                  </div>\n                  <div *ngIf=\"item.type=='number'\">\n                      <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                      <input type=\"number\" class=\"form-control\" id=\"{{item.name}}\" min=\"{{item.min}}\" max=\"{{item.max}}\" placeholder=\"{{item.placeholder}}\" >\n                    </div>\n                  <div *ngIf=\"item.type=='date'\">\n                    <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                    <input type=\"date\" class=\"form-control\" id=\"{{item.name}}\" placeholder=\"{{item.placeholder}}\" >\n                  </div>\n                  <div *ngIf=\"item.type=='datetime-local'\">\n                    <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                    <input type=\"datetime-local\" class=\"form-control\" id=\"{{item.name}}\" placeholder=\"{{item.placeholder}}\" >\n                  </div>\n                  <div *ngIf=\"item.type=='textarea'\">\n                      <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                      <textarea class=\"form-control\" id=\"{{item.name}}\" placeholder=\"{{item.placeholder}}\" >\n                      </textarea>\n                    </div>\n                  <div *ngIf=\"item.type=='file'\">\n                    <label>{{item.label}} (File can't be uploaded right now)</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                    <input type=\"file\" class=\"form-control\" id=\"{{item.name}}\" placeholder=\"{{item.placeholder}}\" >\n                    <small class=\"form-text text-danger\">(File can't be uploaded right now)</small>\n                  </div>\n                  <div *ngIf=\"item.type=='paragraph'\">\n                    <p class=\"form-text\">{{item.placeholder}}</p>\n                  </div>\n                  <div *ngIf=\"item.type=='select'\">\n                    <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                    <select class=\"form-control\" id=\"{{item.name}}\" >\n                      <option *ngFor=\"let v of item.values\" [value]=\"v.value\">{{v.label}}</option>  \n                    </select>\n                    <!-- <small class=\"form-text text-muted\">{{item.description}}</small> -->\n                  </div>\n                  <div *ngIf=\"item.type=='checkbox'\">\n                    <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                    <div *ngFor=\"let v of item.values\" class=\"inline-form-group\">\n                        <label class=\"cust-check-bx\">\n                          <input type=\"checkbox\" [value]=\"v.value\" name=\"{{item.name}}\" (click)=\"toggleValue(v)\"> {{v.label}}\n                          <span class=\"checkmark\"></span>\n                        </label>\n                      </div>\n                  </div>\n                  <div *ngIf=\"item.type=='radio'\">\n                      <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                      <div *ngFor=\"let v of item.values\" class=\"inline-form-group\">\n                          <label class=\"cust-check-bx\">\n                            <input type=\"radio\" [value]=\"v.value\" name=\"{{item.name}}\" > {{v.label}}\n                            <span class=\"checkmark\"></span>\n                          </label>\n                        </div>\n                    </div>\n                  <div *ngIf=\"item.type=='button'\" class=\"btn-cont\">\n                    <input type=\"{{item.subtype}}\" (click)=\"submit()\" value=\"{{item.label}}\" class=\"btn btn-primary\" id=\"{{item.name}}\" >\n                  </div>\n          </div>\n          <div class=\"col-4\">\n            <i *ngIf=\"item.toggle\" (click)=\"item.toggle=false\" class=\"fa fa-chevron-up pull-right\"></i>\n            <i *ngIf=\"!item.toggle\" (click)=\"item.toggle=true\" class=\"fa fa-chevron-down pull-right\"></i>\n            <i style=\"display: none;\" (click)=\"removeField(i)\" class=\"fa fa-trash pull-right\"></i>\n          </div>\n        </div>\n        <div *ngIf=\"item.toggle\" class=\"toggle-Wrapper\">\n          <div style=\"display: none;\" class=\"form-group\">\n              <label>Required</label>\n              <i *ngIf=\"item.required\" (click)=\"item.required=false\" class=\"fa fa-toggle-on red\"></i>\n              <i *ngIf=\"!item.required\" (click)=\"item.required=true\" class=\"fa fa-toggle-off\"></i>\n              <span class=\"pull-right ucfirst\">{{item.type}}</span>\n          </div>\n        \n          <div   class=\"form-group\">\n            <label>Width</label>\n            <input class=\"form-control\" type=\"range\"   min=\"30\" max=\"100\" [(ngModel)]=\"item.width\" />\n           \n            <output  id=\"output\">{{item.width}}</output>%\n\n            \n          </div>\n          <div   class=\"form-group\">\n            <label>Full Width Container</label>\n            \n\n            <input style=\"margin-left: 10px;\" type=\"checkbox\" [(ngModel)]=\"item.newLine\"  />\n          </div>\n          <div style=\"display: none;\" *ngIf=\"item.regex\" class=\"form-group\">\n            <label>Error text</label>\n            <input style=\"margin-left: 10px;\" type=\"text\" [(ngModel)]=\"item.errorText\" />\n          </div>\n          \n          <!-- number -->\n          <div *ngIf=\"item.type=='number'\" class=\"row\">\n            <div class=\"col-6\">\n                <div class=\"form-group\">\n                    <label>Min</label>\n                    <input class=\"form-control\" type=\"text\" [(ngModel)]=\"item.min\" />\n                </div>\n            </div>\n            <div class=\"col-6\">\n                <div class=\"form-group\">\n                    <label>Max</label>\n                    <input class=\"form-control\" type=\"text\" [(ngModel)]=\"item.max\" />\n                </div>\n            </div>\n          </div>\n\n          <!-- radio || checkbox || select -->\n          <div *ngIf=\"item.type=='radio'|| item.type=='checkbox' || item.type=='select'\" >\n              <div class=\"row\">\n                  <div class=\"col-5\">\n                      <div class=\"form-group\">\n                          <label>Label</label>\n                      </div>\n                  </div>\n                  <div class=\"col-5\">\n                      <div class=\"form-group\">\n                          <label>Value</label>\n                      </div>\n                  </div>\n                  <div class=\"col-2\">\n                      <div class=\"form-group\">\n                          <label>Action</label>\n                      </div>\n                  </div>\n                </div>\n              <div *ngFor=\"let i of item.values; let valueIndex=index;\" class=\"row\">\n              <div class=\"col-5\">\n                  <div class=\"form-group\">\n                      <input class=\"form-control\" type=\"text\" [(ngModel)]=\"i.label\" />\n                  </div>\n              </div>\n              <div class=\"col-5\">\n                  <div class=\"form-group\">\n                      <input class=\"form-control\" type=\"text\" [(ngModel)]=\"i.value\" />\n                  </div>\n              </div>\n              <div class=\"col-2\">\n                  <div class=\"form-group\">\n                      <label (click)=\"item.values.splice(valueIndex,1)\">remove</label>\n                  </div>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-5\">\n                  <div class=\"form-group\">\n                      <input class=\"form-control\" type=\"text\" [(ngModel)]=\"value.label\" />\n                  </div>\n              </div>\n              <div class=\"col-5\">\n                  <div class=\"form-group\">\n                      <input class=\"form-control\" type=\"text\" [(ngModel)]=\"value.value\" />\n                  </div>\n              </div>\n              <div class=\"col-2\">\n                  <div class=\"form-group\">\n                      <label (click)=\"addValue(item.values)\">Add</label>\n                  </div>\n              </div>\n            </div>\n          </div>\n          \n\n\n        \n        </div>\n      </div>\n      <!--optional placeholder element for dropzone-->\n      <!--will be removed from DOM on init-->\n      <div class=\"dndPlaceholder\" dndPlaceholderRef>\n      </div>\n      </section>\n\n    </div>\n  </div>\n</div>\n\n \n\n<div *ngIf=\"report\" class=\"padding20 white-bg\">\n    <div class=\"row\">\n        <div class=\"col-12 btn-cont\">\n            <button (click)=\"report=false\" class=\"btn btn-primary\"><< Back</button>\n        </div>\n        <div class=\"col-12 spacer30\"></div>\n        <!-- if records found -->\n        <div  *ngIf=\"reports?.length > 0\" class=\"col-12\">\n            <div *ngFor=\"let records of reports\" class=\"report-block\">\n                <div *ngFor=\"let record of records.attributes\">\n                    <div *ngIf=\"record.type !='button' && record.type !='paragraph'\" class=\"row\">\n                     <div class=\"col-4\">{{record.label}}</div>\n                        <div class=\"col-8\">{{record.value}}</div>\n                    </div>\n                </div>\n            </div>\n            <!-- <pre>{{reports|json}}</pre> -->\n        </div> \n        <!-- if no records found -->\n        <div *ngIf=\"reports?.length == 0\" class=\"col-12 btn-cont\">\n            No response found\n        </div>\n\n    </div>\n\n</div>\n\n<!-- <pre *ngIf=\"model\">{{model|json}}</pre> -->\n\n\n<div *ngIf=\"model\" \nclass=\"container marginT60  marginB30 box1\" \n\n>\n<h6>Preview</h6>\n<hr>\n\n\n  <form >\n  \n    <ng-container *ngFor=\"let item of model.attributes\">\n      \n      <span *ngIf=\"item.newLine\" class=\"br\"></span>  \n      <div *ngIf=\"item.type=='text'\" style.width= \"{{item.width +'%'}}\"  style=\"padding:5px;display:inline-block;\"  >\n          \n        <input  style=\"width: 100%;\" type=\"text\"  class=\"form-control\" id=\"{{item.name}}\" placeholder=\"{{item.placeholder}}\" [(ngModel)]=\"item.value\" [required]=\"item.required\" [ngModelOptions]=\"{standalone: true}\" select=\"off\">\n      </div>\n      <div *ngIf=\"item.type=='select'\" style=\"padding:5px;display:inline-block;\"  style.width= \"{{item.width +'%'}}\">\n        <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n        <select  style=\"width: 100%;\" class=\"form-control\" id=\"{{item.name}}\" [(ngModel)]=\"item.value\" [ngModelOptions]=\"{standalone: true}\">\n          <option *ngFor=\"let v of item.values\" [value]=\"v.value\">{{v.label}}</option>  \n        </select>\n        <!-- <small class=\"form-text text-muted\">{{item.description}}</small> -->\n      </div>\n       \n        <span *ngIf=\"item.newLine\" class=\"br\"></span>  \n    </ng-container>\n    \n  </form>\n</div>\n\n<div class=\"container marginT60  marginB30 box2\">\n  <h6>JSON </h6>\n<hr>\n<pre *ngIf=\"model && model.attributes && model.attributes.length>0\">\n    {{model.attributes|json}}\n</pre>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"model\" class=\"padding20 white-bg\"> \n  <div class=\"row\">\n    <div class=\"col-4\">   \n      <!-- Left Section Of Draggable Index Fields -->\n      <div class=\"fields\" *ngFor=\"let item of fieldModels\">\n        <div class=\"field pointer shadow-bg\" [dndDraggable]=\"item\"\n        [dndEffectAllowed]=\"'copy'\" \n      >         \n          <h5>{{item.indexFieldName}}</h5>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-8\">    \n      \n        <div>\n       <label>Apply Column Mode</label>\n      <input style=\"margin-left: 25px;display: inline;\" type=\"checkbox\"   [(ngModel)]=\"columnmode\" />\n    </div>\n    <div>\n      <label>Number of Columns</label>\n      <input class=\"form-control\" style=\"width:100px;display: inline-block;margin-left: 10px;\" type=\"text\" [(ngModel)]=\"column\">\n    </div>\n      \n      <!--a dropzone-->\n      <!--to allow dropping content that is not [dndDraggable] set dndAllowExternal to true-->\n      <section dndDropzone  (dndDrop)=\"onDrop($event,model.attributes)\" class=\"dndDropArea\"  [ngClass]=\"{'empty':1}\"\n      [style.backgroundColor]=\"model.theme.bgColor\"\n      [style.color]=\"model.theme.textColor\"> \n      <div class=\"dottedText\" *ngIf=\" model.attributes.length==0\" style=\"font-style:initial;\">Drag Here</div>\n\n      <div    class=\"field\" *ngFor=\"let item of model.attributes;let i= index;\" \n       \n        (dndMoved)=\"onDragged(item, model.attributes, 'move')\"\n        [dndEffectAllowed]=\"'all'\" \n        [dndDraggable]=\"item\">\n        <div class=\"row form-group\">\n          <div class=\"col-1\"><i class=\"fa fa-ellipsis-v dndHandle\" dndHandle></i></div>\n          <div class=\"col-7\">\n            <!-- <i [ngClass]=\"item.icon\" class=\"fa pull-left\"></i>\n            <h5>{{item.label}}\n            <span *ngIf=\"item.required\" class=\"red\">*</span></h5> -->\n                  <div *ngIf=\"item.type=='text'\">\n                    <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                    <input type=\"text\" [style.width]= \"item.width\" class=\"form-control\" id=\"{{item.name}}\" placeholder=\"{{item.placeholder}}\" >\n                  </div>\n                 \n                \n                 \n                  <div *ngIf=\"item.type=='number'\">\n                      <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                      <input type=\"number\" class=\"form-control\" id=\"{{item.name}}\" min=\"{{item.min}}\" max=\"{{item.max}}\" placeholder=\"{{item.placeholder}}\" >\n                    </div>\n                  <div *ngIf=\"item.type=='date'\">\n                    <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                    <input type=\"date\" class=\"form-control\" id=\"{{item.name}}\" placeholder=\"{{item.placeholder}}\" >\n                  </div>\n                 \n                  <div *ngIf=\"item.type=='select'\">\n                    <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n                    <select class=\"form-control\" id=\"{{item.name}}\" >\n                      <option *ngFor=\"let v of item.values\" [value]=\"v.value\">{{v.label}}</option>  \n                    </select>\n                    <!-- <small class=\"form-text text-muted\">{{item.description}}</small> -->\n                  </div>\n                  <section *ngIf=\"item.type=='group'\" dndDropzone  (dndDrop)=\"onDrop1($event,item.childs)\" class=\"dndDropArea\"  [ngClass]=\"{'group':1}\"\n                  [style.backgroundColor]=\"model.theme.bgColor\"\n                  [style.color]=\"model.theme.textColor\"> \n                  <div class=\"dottedText\" *ngIf=\"item.childs.length==0\" style=\"font-style:initial;\">Drag Here</div>\n\n                  <div    class=\"field\" *ngFor=\"let item1 of item.childs;let i= index;\" \n       \n      \n        [dndEffectAllowed]=\"'all'\" \n        [dndDraggable]=\"item\">\n        <div class=\"row form-group\">\n          <div class=\"col-1\"><i class=\"fa fa-ellipsis-v dndHandle\" dndHandle></i></div>\n          <div class=\"col-7\">\n            <!-- <i [ngClass]=\"item.icon\" class=\"fa pull-left\"></i>\n            <h5>{{item.label}}\n            <span *ngIf=\"item.required\" class=\"red\">*</span></h5> -->\n                  <div *ngIf=\"item1.type=='text'\">\n                    <label>{{item.label}}</label> <label *ngIf=\"item1.required\" class=\"text-danger\">*</label>\n                    <input type=\"text\" [style.width]= \"item1.width\" class=\"form-control\" id=\"{{item1.name}}\" placeholder=\"{{item1.placeholder}}\" >\n                  </div>\n                 \n                \n                 \n                  <div *ngIf=\"item1.type=='number'\">\n                      <label>{{item1.label}}</label> <label *ngIf=\"item1.required\" class=\"text-danger\">*</label>\n                      <input type=\"number\" class=\"form-control\" id=\"{{item1.name}}\" min=\"{{item1.min}}\" max=\"{{item1.max}}\" placeholder=\"{{item1.placeholder}}\" >\n                    </div>\n                  <div *ngIf=\"item1.type=='date'\">\n                    <label>{{item1.label}}</label> <label *ngIf=\"item1.required\" class=\"text-danger\">*</label>\n                    <input type=\"date\" class=\"form-control\" id=\"{{item1.name}}\" placeholder=\"{{item1.placeholder}}\" >\n                  </div>\n                 \n                  <div *ngIf=\"item1.type=='select'\">\n                    <label>{{item1.label}}</label> <label *ngIf=\"item1.required\" class=\"text-danger\">*</label>\n                    <select class=\"form-control\" id=\"{{item.name}}\" >\n                      <option *ngFor=\"let v of item1.values\" [value]=\"v.value\">{{v.label}}</option>  \n                    </select>\n                    <!-- <small class=\"form-text text-muted\">{{item.description}}</small> -->\n                  </div>\n          </div>\n        </div>\n                  </div>\n                  </section>\n\n                \n          </div>\n          <div class=\"col-4\">\n            <i *ngIf=\"item.toggle\" (click)=\"item.toggle=false\" class=\"fa fa-chevron-up pull-right\"></i>\n            <i *ngIf=\"!item.toggle\" (click)=\"item.toggle=true\" class=\"fa fa-chevron-down pull-right\"></i>\n            <i style=\"display: none;\" (click)=\"removeField(i)\" class=\"fa fa-trash pull-right\"></i>\n          </div>\n        </div>\n        <div *ngIf=\"item.toggle\" style=\"position: relative;\" class=\"toggle-Wrapper\">\n          <div style=\"display: none;\" class=\"form-group\">\n              <label>Required</label>\n              <i *ngIf=\"item.required\" (click)=\"item.required=false\" class=\"fa fa-toggle-on red\"></i>\n              <i *ngIf=\"!item.required\" (click)=\"item.required=true\" class=\"fa fa-toggle-off\"></i>\n              <span class=\"pull-right ucfirst\">{{item.type}}</span>\n          </div>\n        \n          <div   class=\"form-group\">\n            <label>Width</label>\n            <input class=\"form-control\" type=\"range\"   min=\"10\" max=\"100\" [(ngModel)]=\"item.width\" />\n           \n            <output  id=\"output\">{{item.width}}</output>%\n\n            \n          </div>\n          <div   class=\"form-group\">\n            <label>Full Width Container</label>\n            \n\n            <input style=\"margin-left: 10px;\" type=\"checkbox\" [(ngModel)]=\"item.newLine\"  />\n          </div>\n          <div style=\"display: none;\" *ngIf=\"item.regex\" class=\"form-group\">\n            <label>Error text</label>\n            <input style=\"margin-left: 10px;\" type=\"text\" [(ngModel)]=\"item.errorText\" />\n          </div>\n          \n          <!-- number -->\n          <div *ngIf=\"item.type=='number'\" class=\"row\">\n            <div class=\"col-6\">\n                <div class=\"form-group\">\n                    <label>Min</label>\n                    <input class=\"form-control\" type=\"text\" [(ngModel)]=\"item.min\" />\n                </div>\n            </div>\n            <div class=\"col-6\">\n                <div class=\"form-group\">\n                    <label>Max</label>\n                    <input class=\"form-control\" type=\"text\" [(ngModel)]=\"item.max\" />\n                </div>\n            </div>\n          </div>\n\n          <!-- radio || checkbox || select -->\n          <div *ngIf=\"item.type=='radio'|| item.type=='checkbox' || item.type=='select'\" >\n              <div class=\"row\">\n                  <div class=\"col-5\">\n                      <div class=\"form-group\">\n                          <label>Label</label>\n                      </div>\n                  </div>\n                  <div class=\"col-5\">\n                      <div class=\"form-group\">\n                          <label>Value</label>\n                      </div>\n                  </div>\n                  <div class=\"col-2\">\n                      <div class=\"form-group\">\n                          <label>Action</label>\n                      </div>\n                  </div>\n                </div>\n              <div *ngFor=\"let i of item.values; let valueIndex=index;\" class=\"row\">\n              <div class=\"col-5\">\n                  <div class=\"form-group\">\n                      <input class=\"form-control\" type=\"text\" [(ngModel)]=\"i.label\" />\n                  </div>\n              </div>\n              <div class=\"col-5\">\n                  <div class=\"form-group\">\n                      <input class=\"form-control\" type=\"text\" [(ngModel)]=\"i.value\" />\n                  </div>\n              </div>\n              <div class=\"col-2\">\n                  <div class=\"form-group\">\n                      <label (click)=\"item.values.splice(valueIndex,1)\">remove</label>\n                  </div>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-5\">\n                  <div class=\"form-group\">\n                      <input class=\"form-control\" type=\"text\" [(ngModel)]=\"value.label\" />\n                  </div>\n              </div>\n              <div class=\"col-5\">\n                  <div class=\"form-group\">\n                      <input class=\"form-control\" type=\"text\" [(ngModel)]=\"value.value\" />\n                  </div>\n              </div>\n              <div class=\"col-2\">\n                  <div class=\"form-group\">\n                      <label (click)=\"addValue(item.values)\">Add</label>\n                  </div>\n              </div>\n            </div>\n          </div>\n          \n\n\n        \n        </div>\n      </div>\n      <!--optional placeholder element for dropzone-->\n      <!--will be removed from DOM on init-->\n      <div class=\"dndPlaceholder\" dndPlaceholderRef>\n      </div>\n      </section>\n\n    </div>\n  </div>\n</div>\n\n \n\n\n\n<!-- Preview & Json -->\n\n\n<div *ngIf=\"model\" class=\"container marginT60  marginB30 box1\" >\n  <h6>Preview</h6>\n<hr>\n  <form >  \n    <ng-container *ngFor=\"let item of model.attributes\">      \n      <span *ngIf=\"item.newLine\" class=\"br\"></span>  \n      <div *ngIf=\"item.type=='text'\" style.width= \"{{item.width +'%'}}\"  style=\"padding:5px;display:inline-block;\"  >\n          \n        <input   style=\"width: 100%;\" type=\"text\"  class=\"form-control\" id=\"{{item.name}}\" placeholder=\"{{item.placeholder}}\" [(ngModel)]=\"item.value\" [required]=\"item.required\" [ngModelOptions]=\"{standalone: true}\" select=\"off\">\n      </div>\n\n      <div *ngIf=\"item.type=='select'\" style=\"padding:5px;display:inline-block;\"  style.width= \"{{item.width +'%'}}\">\n        <label>{{item.label}}</label> <label *ngIf=\"item.required\" class=\"text-danger\">*</label>\n        <select matInput  style=\"width: 100%;\" class=\"form-control\" id=\"{{item.name}}\" [(ngModel)]=\"item.value\" [ngModelOptions]=\"{standalone: true}\">\n          <option *ngFor=\"let v of item.values\" [value]=\"v.value\">{{v.label}}</option>  \n        </select>\n        <!-- <small class=\"form-text text-muted\">{{item.description}}</small> -->\n      </div>\n\n      <div *ngIf=\"item.type=='date'\" style=\"display:inline-block;\"  style.width= \"{{item.width +'%'}}\">\n        <input   style=\"width: 100%;\" type=\"date\"  class=\"form-control\" select=\"off\">\n        <!-- <small class=\"form-text text-muted\">{{item.description}}</small> -->\n      </div>\n      <div *ngIf=\"item.type=='group'\" style=\"display:inline-block;\"  style.width= \"{{item.width +'%'}}\">\n      <ng-container *ngFor=\"let item1 of item.childs\"> \n        <div *ngIf=\"item1.type=='text'\" style.width= \"{{item1.width +'%'}}\"  style=\"padding:5px;display:inline-block;\"  >\n          \n          <input   style=\"width: 100%;\" type=\"text\"  class=\"form-control\" id=\"{{item1.name}}\" placeholder=\"{{item.placeholder}}\" [(ngModel)]=\"item1.value\" [required]=\"item.required\" [ngModelOptions]=\"{standalone: true}\" select=\"off\">\n        </div>\n  \n        <div *ngIf=\"item1.type=='select'\" style=\"padding:5px;display:inline-block;\"  style.width= \"{{item1.width +'%'}}\">\n          <label>{{item1.label}}</label> \n          <select matInput  style=\"width: 100%;\" class=\"form-control\" id=\"{{item1.name}}\" [(ngModel)]=\"item1.value\" [ngModelOptions]=\"{standalone: true}\">\n            <option *ngFor=\"let v of item1.values\" [value]=\"v.value\">{{v.label}}</option>  \n          </select>\n          <!-- <small class=\"form-text text-muted\">{{item.description}}</small> -->\n        </div>\n  \n        <div *ngIf=\"item1.type=='date'\" style=\"padding:5px;display:inline-block;\"  style.width= \"{{item1.width +'%'}}\">\n          <input   style=\"width: 100%;\" type=\"date\"  class=\"form-control\" select=\"off\">\n          <!-- <small class=\"form-text text-muted\">{{item.description}}</small> -->\n        </div>\n      </ng-container>\n      </div>\n      <span *ngIf=\"item.newLine\" class=\"br\"></span>  \n    </ng-container>\n    \n  </form>\n</div>\n\n<div class=\"container marginT60  marginB30 box2\">\n  <h6>JSON </h6>\n<hr>\n<pre *ngIf=\"model && model.attributes && model.attributes.length>0\">\n    {{model.attributes|json}}\n</pre>\n</div>");
 
 /***/ }),
 
@@ -391,6 +391,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit_app_edit_app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./edit-app/edit-app.component */ "./src/app/edit-app/edit-app.component.ts");
 /* harmony import */ var ngx_drag_drop__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-drag-drop */ "./node_modules/ngx-drag-drop/ngx-drag-drop.js");
 /* harmony import */ var _toverux_ngx_sweetalert2__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @toverux/ngx-sweetalert2 */ "./node_modules/@toverux/ngx-sweetalert2/@toverux/ngx-sweetalert2.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm2015/animations.js");
+/* harmony import */ var _material_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./material.module */ "./src/app/material.module.ts");
+
+
 
 
 
@@ -419,6 +423,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
             ngx_drag_drop__WEBPACK_IMPORTED_MODULE_8__["DndModule"],
+            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"],
+            _material_module__WEBPACK_IMPORTED_MODULE_11__["MaterialModule"]
         ],
         providers: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
@@ -455,15 +461,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
-
 
 
 
 let EditAppComponent = class EditAppComponent {
     constructor(route) {
         this.route = route;
+        this.columnmode = false;
+        this.column = 3;
         this.value = {
             label: "",
             value: ""
@@ -477,14 +482,14 @@ let EditAppComponent = class EditAppComponent {
                 "indexField": 1,
                 "placeholder": "Enter placeholder",
                 "className": "form-control",
-                "width": "70",
+                "width": "100",
                 "newLine": true
             }, {
                 "type": "select",
                 "name": "Name2",
                 "indexField": 1,
                 "indexFieldName": "Name2",
-                "width": "70",
+                "width": "100",
                 "label": "Select",
                 "description": "Select",
                 "placeholder": "Select",
@@ -503,7 +508,28 @@ let EditAppComponent = class EditAppComponent {
                         "value": "option-3"
                     }
                 ]
+            }, {
+                "type": "date",
+                "icon": "fa-calendar",
+                "indexFieldName": "Name3",
+                "indexField": 1,
+                "label": "Date",
+                "placeholder": "Date",
+                "className": "form-control",
+                "width": "100",
+                "newLine": true
             },
+            {
+                "type": "group",
+                "indexFieldName": "Group",
+                "indexField": 1,
+                "label": "Group",
+                "placeholder": "Date",
+                "className": "form-control",
+                "width": "100",
+                "newLine": true,
+                "childs": []
+            }
         ];
         this.modelFields = [];
         this.model = {
@@ -516,31 +542,6 @@ let EditAppComponent = class EditAppComponent {
             },
             attributes: this.modelFields
         };
-        this.report = false;
-        this.reports = [];
-    }
-    ngOnInit() {
-        // this.route.params.subscribe( params =>{
-        //   console.log(params);
-        //   this.us.getDataApi('/admin/getFormById',{id:params.id}).subscribe(r=>{
-        //     console.log(r);
-        //     this.model = r['data'];
-        //   });
-        // });
-        // this.model = this.cs.data; 
-        // console.log(this.model.data);
-    }
-    onDragStart(event) {
-        console.log("drag started", JSON.stringify(event, null, 2));
-    }
-    onDragEnd(event) {
-        console.log("drag ended", JSON.stringify(event, null, 2));
-    }
-    onDraggableCopied(event) {
-        console.log("draggable copied", JSON.stringify(event, null, 2));
-    }
-    onDraggableLinked(event) {
-        console.log("draggable linked", JSON.stringify(event, null, 2));
     }
     onDragged(item, list, effect) {
         if (effect === "move") {
@@ -548,17 +549,33 @@ let EditAppComponent = class EditAppComponent {
             list.splice(index, 1);
         }
     }
-    onDragCanceled(event) {
-        console.log("drag cancelled", JSON.stringify(event, null, 2));
-    }
-    onDragover(event) {
-        console.log("dragover", JSON.stringify(event, null, 2));
-    }
     onDrop(event, list) {
         if (list && (event.dropEffect === "copy" || event.dropEffect === "move")) {
             if (event.dropEffect === "copy")
                 event.data.name = event.data.type + '-' + new Date().getTime();
             event.data.indexField = event.index + 1;
+            if (this.columnmode) {
+                if (this.column && event.dropEffect === "copy")
+                    event.data.width = 100 / this.column;
+                event.data.newLine = false;
+            }
+            let index = event.index;
+            if (typeof index === "undefined") {
+                index = list.length;
+            }
+            list.splice(index, 0, event.data);
+        }
+    }
+    onDrop1(event, list) {
+        if (list && (event.dropEffect === "copy" || event.dropEffect === "move")) {
+            if (event.dropEffect === "copy")
+                event.data.name = event.data.type + '-' + new Date().getTime();
+            event.data.indexField = event.index + 1;
+            if (this.columnmode) {
+                if (this.column && event.dropEffect === "copy")
+                    event.data.width = 100 / this.column;
+                event.data.newLine = false;
+            }
             let index = event.index;
             if (typeof index === "undefined") {
                 index = list.length;
@@ -570,95 +587,8 @@ let EditAppComponent = class EditAppComponent {
         values.push(this.value);
         this.value = { label: "", value: "" };
     }
-    removeField(i) {
-        sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()({
-            title: 'Are you sure?',
-            text: "Do you want to remove this field?",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#00B96F',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, remove!'
-        }).then((result) => {
-            if (result.value) {
-                this.model.attributes.splice(i, 1);
-            }
-        });
-    }
-    updateForm() {
-        let input = new FormData;
-        input.append('id', this.model._id);
-        input.append('name', this.model.name);
-        input.append('description', this.model.description);
-        input.append('bannerImage', this.model.theme.bannerImage);
-        input.append('bgColor', this.model.theme.bgColor);
-        input.append('textColor', this.model.theme.textColor);
-        input.append('attributes', JSON.stringify(this.model.attributes));
-        // this.us.putDataApi('/admin/updateForm',input).subscribe(r=>{
-        //   console.log(r);
-        //   swal('Success','App updated successfully','success');
-        // });
-    }
-    initReport() {
-        this.report = true;
-        let input = {
-            id: this.model._id
-        };
-        // this.us.getDataApi('/admin/allFilledForms',input).subscribe(r=>{
-        //   this.reports = r.data;
-        //   console.log('reports',this.reports);
-        //   this.reports.map(records=>{
-        //     return records.attributes.map(record=>{
-        //       if(record.type=='checkbox'){
-        //         record.value = record.values.filter(r=>r.selected).map(i=>i.value).join(',');
-        //       }
-        //     })
-        //   });
-        // });
-    }
     toggleValue(item) {
         item.selected = !item.selected;
-    }
-    submit() {
-        let valid = true;
-        let validationArray = JSON.parse(JSON.stringify(this.model.attributes));
-        validationArray.reverse().forEach(field => {
-            console.log(field.label + '=>' + field.required + "=>" + field.value);
-            if (field.required && !field.value && field.type != 'checkbox') {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()('Error', 'Please enter ' + field.label, 'error');
-                valid = false;
-                return false;
-            }
-            if (field.required && field.regex) {
-                let regex = new RegExp(field.regex);
-                if (regex.test(field.value) == false) {
-                    sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()('Error', field.errorText, 'error');
-                    valid = false;
-                    return false;
-                }
-            }
-            if (field.required && field.type == 'checkbox') {
-                if (field.values.filter(r => r.selected).length == 0) {
-                    sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()('Error', 'Please enterrr ' + field.label, 'error');
-                    valid = false;
-                    return false;
-                }
-            }
-        });
-        if (!valid) {
-            return false;
-        }
-        console.log('Save', this.model);
-        let input = new FormData;
-        input.append('formId', this.model._id);
-        input.append('attributes', JSON.stringify(this.model.attributes));
-        // this.us.postDataApi('/user/formFill',input).subscribe(r=>{
-        //   console.log(r);
-        //   swal('Success','You have contact sucessfully','success');
-        //   this.success = true;
-        // },error=>{
-        //   swal('Error',error.message,'error');
-        // });
     }
 };
 EditAppComponent.ctorParameters = () => [
@@ -671,6 +601,160 @@ EditAppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./edit-app.component.css */ "./src/app/edit-app/edit-app.component.css")).default]
     })
 ], EditAppComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/material.module.ts":
+/*!************************************!*\
+  !*** ./src/app/material.module.ts ***!
+  \************************************/
+/*! exports provided: MaterialModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MaterialModule", function() { return MaterialModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/cdk/a11y */ "./node_modules/@angular/cdk/esm2015/a11y.js");
+/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "./node_modules/@angular/cdk/esm2015/drag-drop.js");
+/* harmony import */ var _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/cdk/portal */ "./node_modules/@angular/cdk/esm2015/portal.js");
+/* harmony import */ var _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/cdk/scrolling */ "./node_modules/@angular/cdk/esm2015/scrolling.js");
+/* harmony import */ var _angular_cdk_stepper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/cdk/stepper */ "./node_modules/@angular/cdk/esm2015/stepper.js");
+/* harmony import */ var _angular_cdk_table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/cdk/table */ "./node_modules/@angular/cdk/esm2015/table.js");
+/* harmony import */ var _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/cdk/tree */ "./node_modules/@angular/cdk/esm2015/tree.js");
+/* harmony import */ var _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/autocomplete */ "./node_modules/@angular/material/esm2015/autocomplete.js");
+/* harmony import */ var _angular_material_badge__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/badge */ "./node_modules/@angular/material/esm2015/badge.js");
+/* harmony import */ var _angular_material_bottom_sheet__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/bottom-sheet */ "./node_modules/@angular/material/esm2015/bottom-sheet.js");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm2015/button.js");
+/* harmony import */ var _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material/button-toggle */ "./node_modules/@angular/material/esm2015/button-toggle.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm2015/card.js");
+/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/esm2015/checkbox.js");
+/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/material/chips */ "./node_modules/@angular/material/esm2015/chips.js");
+/* harmony import */ var _angular_material_stepper__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/material/stepper */ "./node_modules/@angular/material/esm2015/stepper.js");
+/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/material/datepicker */ "./node_modules/@angular/material/esm2015/datepicker.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/material/divider */ "./node_modules/@angular/material/esm2015/divider.js");
+/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/material/expansion */ "./node_modules/@angular/material/esm2015/expansion.js");
+/* harmony import */ var _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/material/grid-list */ "./node_modules/@angular/material/esm2015/grid-list.js");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm2015/icon.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm2015/input.js");
+/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm2015/list.js");
+/* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material/menu */ "./node_modules/@angular/material/esm2015/menu.js");
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/material/core */ "./node_modules/@angular/material/esm2015/core.js");
+/* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/paginator */ "./node_modules/@angular/material/esm2015/paginator.js");
+/* harmony import */ var _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/material/progress-bar */ "./node_modules/@angular/material/esm2015/progress-bar.js");
+/* harmony import */ var _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/material/progress-spinner */ "./node_modules/@angular/material/esm2015/progress-spinner.js");
+/* harmony import */ var _angular_material_radio__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @angular/material/radio */ "./node_modules/@angular/material/esm2015/radio.js");
+/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/esm2015/select.js");
+/* harmony import */ var _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @angular/material/sidenav */ "./node_modules/@angular/material/esm2015/sidenav.js");
+/* harmony import */ var _angular_material_slider__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @angular/material/slider */ "./node_modules/@angular/material/esm2015/slider.js");
+/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @angular/material/slide-toggle */ "./node_modules/@angular/material/esm2015/slide-toggle.js");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm2015/snack-bar.js");
+/* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! @angular/material/sort */ "./node_modules/@angular/material/esm2015/sort.js");
+/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm2015/table.js");
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm2015/tabs.js");
+/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm2015/toolbar.js");
+/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! @angular/material/tooltip */ "./node_modules/@angular/material/esm2015/tooltip.js");
+/* harmony import */ var _angular_material_tree__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @angular/material/tree */ "./node_modules/@angular/material/esm2015/tree.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let MaterialModule = class MaterialModule {
+};
+MaterialModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+        exports: [
+            _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_2__["A11yModule"],
+            _angular_cdk_stepper__WEBPACK_IMPORTED_MODULE_6__["CdkStepperModule"],
+            _angular_cdk_table__WEBPACK_IMPORTED_MODULE_7__["CdkTableModule"],
+            _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_8__["CdkTreeModule"],
+            _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_3__["DragDropModule"],
+            _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_9__["MatAutocompleteModule"],
+            _angular_material_badge__WEBPACK_IMPORTED_MODULE_10__["MatBadgeModule"],
+            _angular_material_bottom_sheet__WEBPACK_IMPORTED_MODULE_11__["MatBottomSheetModule"],
+            _angular_material_button__WEBPACK_IMPORTED_MODULE_12__["MatButtonModule"],
+            _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_13__["MatButtonToggleModule"],
+            _angular_material_card__WEBPACK_IMPORTED_MODULE_14__["MatCardModule"],
+            _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_15__["MatCheckboxModule"],
+            _angular_material_chips__WEBPACK_IMPORTED_MODULE_16__["MatChipsModule"],
+            _angular_material_stepper__WEBPACK_IMPORTED_MODULE_17__["MatStepperModule"],
+            _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_18__["MatDatepickerModule"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_19__["MatDialogModule"],
+            _angular_material_divider__WEBPACK_IMPORTED_MODULE_20__["MatDividerModule"],
+            _angular_material_expansion__WEBPACK_IMPORTED_MODULE_21__["MatExpansionModule"],
+            _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_22__["MatGridListModule"],
+            _angular_material_icon__WEBPACK_IMPORTED_MODULE_23__["MatIconModule"],
+            _angular_material_input__WEBPACK_IMPORTED_MODULE_24__["MatInputModule"],
+            _angular_material_list__WEBPACK_IMPORTED_MODULE_25__["MatListModule"],
+            _angular_material_menu__WEBPACK_IMPORTED_MODULE_26__["MatMenuModule"],
+            _angular_material_core__WEBPACK_IMPORTED_MODULE_27__["MatNativeDateModule"],
+            _angular_material_paginator__WEBPACK_IMPORTED_MODULE_28__["MatPaginatorModule"],
+            _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_29__["MatProgressBarModule"],
+            _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_30__["MatProgressSpinnerModule"],
+            _angular_material_radio__WEBPACK_IMPORTED_MODULE_31__["MatRadioModule"],
+            _angular_material_core__WEBPACK_IMPORTED_MODULE_27__["MatRippleModule"],
+            _angular_material_select__WEBPACK_IMPORTED_MODULE_32__["MatSelectModule"],
+            _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_33__["MatSidenavModule"],
+            _angular_material_slider__WEBPACK_IMPORTED_MODULE_34__["MatSliderModule"],
+            _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_35__["MatSlideToggleModule"],
+            _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_36__["MatSnackBarModule"],
+            _angular_material_sort__WEBPACK_IMPORTED_MODULE_37__["MatSortModule"],
+            _angular_material_table__WEBPACK_IMPORTED_MODULE_38__["MatTableModule"],
+            _angular_material_tabs__WEBPACK_IMPORTED_MODULE_39__["MatTabsModule"],
+            _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_40__["MatToolbarModule"],
+            _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_41__["MatTooltipModule"],
+            _angular_material_tree__WEBPACK_IMPORTED_MODULE_42__["MatTreeModule"],
+            _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_4__["PortalModule"],
+            _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_5__["ScrollingModule"],
+        ],
+        providers: [
+            { provide: _angular_material_core__WEBPACK_IMPORTED_MODULE_27__["MAT_LABEL_GLOBAL_OPTIONS"], useValue: { float: 'never' } }
+        ]
+    })
+], MaterialModule);
 
 
 
@@ -716,19 +800,22 @@ const environment = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm2015/platform-browser-dynamic.js");
-/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hammerjs */ "./node_modules/hammerjs/hammer.js");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(hammerjs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm2015/platform-browser-dynamic.js");
+/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
 
 
 
 
 
-if (_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].production) {
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["enableProdMode"])();
+
+if (_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].production) {
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["enableProdMode"])();
 }
-Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"])
+Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_4__["AppModule"])
     .catch(err => console.error(err));
 
 
